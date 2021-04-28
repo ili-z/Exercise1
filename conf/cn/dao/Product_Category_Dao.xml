@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.Product_Category_Dao">
+	<!-- public List<EasybuyProductCategory> getProductCategoryList(int typeId); -->
+	<select id="getProductCategoryList" parameterType="int" resultType="cn.pojo.EasybuyProductCategory">
+		SELECT id,`name`,parentId,`type` FROM easybuy_product_category WHERE `parentId`=#{_param1} ORDER BY `name` DESC
+	</select>
+	
+	<!-- public List<EasybuyProductCategory> getProductCategoryListOne(); -->
+	<select id="getProductCategoryListOne" resultType="cn.pojo.EasybuyProductCategory">
+		 SELECT `id`,`name`,`parentId`,`type` FROM easybuy_product_category WHERE `type`=1
+	</select>
+	
+	<!-- public ReturnResult Login(String name,String pwd);  -->
+	<select id="Login">
+	
+	</select>
+</mapper>

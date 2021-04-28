@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.ProductionDao">
+	<resultMap type="cn.pojo.EasybuyProduct" id="EasybuyProduct">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="description" property="description"/>
+		<result column="price" property="price"/>
+		<result column="stock" property="stock"/>
+		<result column="categoryLevel1" property="categoryLevel1"/>
+		<result column="categoryLevel2" property="categoryLevel2"/>
+		<result column="categoryLevel3" property="categoryLevel3"/>
+		<result column="fileName" property="fileName"/>
+		<result column="isDelete" property="isDelete"/>
+	</resultMap>
+	<!-- <parameterMap type="cn.utils.Pager" id="pager">
+		<parameter property="currentPage"/>
+		<parameter property="rowPerPage"/>
+	</parameterMap> -->
+	<!-- public List<EasybuyProduct> findEasybuyProductAll(Pager pager); -->
+	<select id="findEasybuyProductAll" 
+		resultMap="EasybuyProduct">
+		SELECT
+		`id`,`name`,`description`,`price`,`stock`,`categoryLevel1`,`categoryLevel2`,`categoryLevel3`,`fileName`,`isDelete`
+		FROM easybuy_product where isDelete=0 LIMIT #{pa.currentPage},#{pa.rowPerPage}
+	</select>
+
+	<!-- public int findTotalCount();//查询总记录数 -->
+	<select id="findTotalCount" resultType="int">
+		SELECT COUNT(1) FROM easybuy_product WHERE isDelete=0
+	</select>
+</mapper>
